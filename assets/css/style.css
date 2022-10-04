@@ -58,3 +58,34 @@ header {
 #start:hover {
     cursor: pointer;
 }
+/* give answers the same starting styling as the start button */
+.answers {
+    font-size: 175%;
+    background-color: var(--purple);
+    color: white;
+    margin-bottom: 10px;
+
+}
+
+.answers:hover {
+    cursor: pointer;
+}
+
+/* adjust styling without affecting container class*/
+#questions {
+    width: 50%;
+    margin-left: 25%;
+    align-items: flex-start;
+}
+
+/* styling for affirmation of right or wrong answers */
+#affirm {
+    width: 50%;
+    margin-left: 25%;
+    align-items: flex-start;
+    font-size: 175%;
+    margin-top: 20px;
+    font-style: oblique;
+    font-weight: 900;
+    color: grey;
+}

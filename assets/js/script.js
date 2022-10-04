@@ -42,11 +42,61 @@ startEl.addEventListener("click", hideContainer);
 // id and class placeholders
 // First, put into var and set display to none
 var questionsEl = document.getElementById("questions");
-questionsEl.style.display = 'none';
+function hideQuestions() {
+    questionsEl.style.display = 'none';
+}
+hideQuestions();
 // next, create a function to show the questions content
 function showQuestions() {
-    questionsEl.style.display = 'flex';
+    questionsEl.style.display = '';
 }
-// now, add another event listener that will show the new content
+// now, add another event listener that will show the new container
 // once the start button is clicked
 startEl.addEventListener("click", showQuestions);
+// now name addtl vars and create a function to show content of question 1
+var titleEl = document.getElementById("questionTitle");
+var answersEl = document.getElementsByClassName("answers");
+var answerOneEl = document.getElementById("answerOne");
+var answerTwoEl = document.getElementById("answerTwo");
+var answerThreeEl = document.getElementById("answerThree");
+var answerFourEl = document.getElementById("answerFour");
+var affirm = document.getElementById("affirm");
+
+function questionOne() {
+    titleEl.textContent = "Commonly used data types DO NOT include:";
+    answerOneEl.textContent = "1. strings";
+    answerTwoEl.textContent = "2. booleans";
+    answerThreeEl.textContent = "3. alerts";
+    answerFourEl.textContent = "4. numbers";
+}
+// event listener to show content for question one
+startEl.addEventListener("click", questionOne);
+// add function for affirming correct/incorrect answers
+function affirmCorrect() {
+    affirm.textContent = "-- Correct! --";
+    hideQuestions();
+}
+function affirmIncorrect() {
+    affirm.textContent = "-- Incorrect! --";
+    hideQuestions();
+}
+// add event listeners for right answer vs wrong
+answerOneEl.addEventListener("click", affirmIncorrect);
+answerTwoEl.addEventListener("click", affirmIncorrect);
+answerThreeEl.addEventListener("click", affirmCorrect);
+answerFourEl.addEventListener("click", affirmIncorrect);
+// create function for question 2
+function questionTwo() {
+    showQuestions();
+    titleEl.textContent = "Arrays in JavaScript can be used to store _____.";
+    answerOneEl.textContent = "1. numbers and strings";
+    answerTwoEl.textContent = "2. other arrays!";
+    answerThreeEl.textContent = "3. booleans";
+    answerFourEl.textContent = "4. all of the above";
+}
+// add event listeners to prompt next question
+answerOneEl.addEventListener("click", questionTwo);
+answerTwoEl.addEventListener("click", questionTwo);
+answerThreeEl.addEventListener("click", questionTwo);
+answerFourEl.addEventListener("click", questionTwo);
+// need to fix event listeners.. currently applying to all future questions as well
