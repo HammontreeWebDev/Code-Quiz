@@ -1,0 +1,60 @@
+:root {
+    background-color: #f1f1f1;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+        'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        --purple: #6a4596;
+}
+
+header {
+    width: 100vw;
+}
+
+#bar {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding: 1%;
+}
+
+#highscore {
+    color: var(--purple);
+}
+
+#highscore:hover {
+    cursor: pointer;
+}
+
+.item {
+    font-size: 125%;
+}
+
+/* universal container for sections that will appear on the page */
+.container {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    margin-top: 5%;
+}
+
+.title {
+    font-weight: 900;
+    font-size: 300%;
+    padding-bottom: 3%;
+}
+
+.container p {
+    font-size: 135%;
+    text-align: center;
+    padding-bottom: 3%;
+    width: 30%;
+}
+
+#start {
+    font-size: 175%;
+    background-color: var(--purple);
+    color: white;
+}
+
+#start:hover {
+    cursor: pointer;
+}
