@@ -52,15 +52,15 @@ startEl.addEventListener("click", hideContainer);
 // we will dynamically create content within the
 // id and class placeholders
 // First, put into var and set display to none
-var questionsEl = document.getElementById("questions");
+var quizEl = document.getElementById("quiz");
 function hideQuestions() {
-    questionsEl.style.display = 'none';
+    quizEl.style.display = 'none';
 }
 hideQuestions();
 
 // next, create a function to show the questions content
 function showQuestions() {
-    questionsEl.style.display = '';
+    quizEl.style.display = '';
 }
 
 // now, add another event listener that will show the new container
@@ -76,6 +76,7 @@ var ans2El = document.getElementById("ans2");
 var ans3El = document.getElementById("ans3");
 var ans4El = document.getElementById("ans4");
 var userAnswer = "";
+var id = 0;
 
 // affirm message to be displayed for right and wrong answers
 function correct() {
@@ -138,11 +139,11 @@ function iterate(id) {
     ans3El.textContent = questions[id].answer[2].text;
     ans4El.textContent = questions[id].answer[3].text;
 
-    // provide true or false value to answer options
-    ans1El.value = questions[id].answer[0].isCorrect;
-    ans2El.value = questions[id].answer[1].isCorrect;
-    ans3El.value = questions[id].answer[2].isCorrect;
-    ans4El.value = questions[id].answer[3].isCorrect;
+    // store true or false in variable
+    var firstAnswerValue = questions[id].answer[0].isCorrect;
+    var secondAnswerValue = questions[id].answer[1].isCorrect;
+    var thirdAnswerValue = questions[id].answer[2].isCorrect;
+    var fourthAnswerValue = questions[id].answer[3].isCorrect;
 
     // evaluate user input and give feedback:
 
@@ -150,15 +151,16 @@ function iterate(id) {
         if (userAnswer == true) {
             correct();
         }
-        else
-        incorrect();
+        else if (userAnswer != true) {
+            incorrect();
+        }
     }
 
     // option 1:
     ans1El.addEventListener("click", (event) => {
         event.preventDefault();
         event.stopPropagation();
-        userAnswer = ans1El.value;
+        userAnswer = firstAnswerValue;
         evaluate();
     });
 
@@ -166,7 +168,7 @@ function iterate(id) {
     ans2El.addEventListener("click", (event) => {
         event.preventDefault();
         event.stopPropagation();
-        userAnswer = ans2El.value;
+        userAnswer = secondAnswerValue;
         evaluate();
     });
 
@@ -174,7 +176,7 @@ function iterate(id) {
     ans3El.addEventListener("click", (event) => {
         event.preventDefault();
         event.stopPropagation();
-        userAnswer = ans3El.value;
+        userAnswer = thirdAnswerValue;
         evaluate();
     });
 
@@ -182,17 +184,14 @@ function iterate(id) {
     ans4El.addEventListener("click", (event) => {
         event.preventDefault();
         event.stopPropagation();
-        userAnswer = ans4El.value;
+        userAnswer = fourthAnswerValue;
         evaluate();
     });
 };
 
-// declare id var to be used
-var id = 0;
-
 // start initial function
 function startQuiz() {
-    iterate(id);
+    iterate("0");
 
     // for loop that listens to each button input and continues
     // to call the function, until the last question
@@ -210,11 +209,7 @@ function startQuiz() {
 
 // Start Quiz on button click
 startEl.addEventListener("click", (event) => {
+    event.preventDefault();
     event.stopPropagation();
     startQuiz();
 });
-
-console.log(ans1El.value);
-
-
-// values are not being updated... debug needed

@@ -72,7 +72,7 @@ header {
 }
 
 /* adjust styling without affecting container class*/
-#questions {
+#quiz {
     width: 50%;
     margin-left: 25%;
     align-items: flex-start;
