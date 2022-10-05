@@ -76,6 +76,7 @@ var ans2El = document.getElementById("ans2");
 var ans3El = document.getElementById("ans3");
 var ans4El = document.getElementById("ans4");
 var userAnswer = "";
+// set id to 0 so func can run properly
 var id = 0;
 
 // affirm message to be displayed for right and wrong answers
@@ -129,7 +130,7 @@ const questions = [{
 }];
 
 // function to iterate through the questions and options
-function iterate(id) {
+function quiz() {
     // provide the question text
     questionEl.textContent = questions[id].question;
 
@@ -145,7 +146,7 @@ function iterate(id) {
     var thirdAnswerValue = questions[id].answer[2].isCorrect;
     var fourthAnswerValue = questions[id].answer[3].isCorrect;
 
-    // evaluate user input and give feedback:
+    // function to evaluate user input and give feedback:
 
     function evaluate() {
         if (userAnswer == true) {
@@ -191,7 +192,7 @@ function iterate(id) {
 
 // start initial function
 function startQuiz() {
-    iterate("0");
+    quiz();
 
     // for loop that listens to each button input and continues
     // to call the function, until the last question
@@ -201,7 +202,7 @@ function startQuiz() {
             event.stopPropagation();
             if (id < 4) {
                 id++;
-                iterate(id)
+                quiz()
             }
         })
     };
