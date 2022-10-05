@@ -75,6 +75,7 @@ var ans1El = document.getElementById("ans1");
 var ans2El = document.getElementById("ans2");
 var ans3El = document.getElementById("ans3");
 var ans4El = document.getElementById("ans4");
+var userAnswer = "";
 
 // affirm message to be displayed for right and wrong answers
 function correct() {
@@ -143,21 +144,77 @@ function iterate(id) {
     ans3El.value = questions[id].answer[2].isCorrect;
     ans4El.value = questions[id].answer[3].isCorrect;
 
-    // for loop that listens to each button input and continues
-    // to call the function, until the last question
-    for (var i = 0; i < answersEl.length; i++) {
-        answersEl[i].addEventListener("click", () => {
-            if (id < 4) {
-                id++;
-                iterate(id);
-            }
-        })
+    // evaluate user input and give feedback:
+
+    function evaluate() {
+        if (userAnswer == true) {
+            correct();
+        }
+        else
+        incorrect();
     }
 
-}
+    // option 1:
+    ans1El.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        userAnswer = ans1El.value;
+        evaluate();
+    });
+
+    // option 2:
+    ans2El.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        userAnswer = ans2El.value;
+        evaluate();
+    });
+
+    // option 3:
+    ans3El.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        userAnswer = ans3El.value;
+        evaluate();
+    });
+
+    // option 4:
+    ans4El.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        userAnswer = ans4El.value;
+        evaluate();
+    });
+};
 
 // declare id var to be used
 var id = 0;
 
 // start initial function
-startEl.addEventListener("click", iterate(id))
+function startQuiz() {
+    iterate(id);
+
+    // for loop that listens to each button input and continues
+    // to call the function, until the last question
+    for (var i = 0; i < answersEl.length; i++) {
+        answersEl[i].addEventListener("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            if (id < 4) {
+                id++;
+                iterate(id)
+            }
+        })
+    };
+}
+
+// Start Quiz on button click
+startEl.addEventListener("click", (event) => {
+    event.stopPropagation();
+    startQuiz();
+});
+
+console.log(ans1El.value);
+
+
+// values are not being updated... debug needed
