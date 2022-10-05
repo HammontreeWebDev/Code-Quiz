@@ -22,9 +22,10 @@ function countdown() {
     else if (count === 1) {
         timerEl.textContent = "Time: " + count-- + " second left";
     }
-    else {
+    else if (count <= 0) {
         clearInterval(countdown);
-        timerEl.textContent = "GAME OVER!"
+        count = 0;
+        timerEl.textContent = "Time: " + count + " seconds left";
     }
 }
 
@@ -78,14 +79,6 @@ var ans4El = document.getElementById("ans4");
 var userAnswer = "";
 // set id to 0 so func can run properly
 var id = 0;
-
-// affirm message to be displayed for right and wrong answers
-function correct() {
-    affirm.textContent = "-- Correct! --"
-}
-function incorrect() {
-    affirm.textContent = "-- Incorrect! --"
-}
 
 // array of questions that will be asked:
 const questions = [{
@@ -146,13 +139,23 @@ function quiz() {
     var thirdAnswerValue = questions[id].answer[2].isCorrect;
     var fourthAnswerValue = questions[id].answer[3].isCorrect;
 
+    // affirm message to be displayed for right and wrong answers
+    function correct() {
+        affirm.textContent = "-- Correct! --";
+        count = count;
+    }
+    function incorrect() {
+        affirm.textContent = "-- Incorrect! --";
+        count = (count-10);
+    }
+
     // function to evaluate user input and give feedback:
 
     function evaluate() {
         if (userAnswer == true) {
             correct();
         }
-        else if (userAnswer != true) {
+        else {
             incorrect();
         }
     }
@@ -214,3 +217,6 @@ startEl.addEventListener("click", (event) => {
     event.stopPropagation();
     startQuiz();
 });
+
+// count is stacking the penalty.. 10 secs.. then 20.. then 30... etc
+// need debug
