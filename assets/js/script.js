@@ -185,30 +185,17 @@ function quiz() {
     });
 };
 
-// start initial function
-function startQuiz() {
-    quiz();
-
-    // for loop that listens to each button input and continues
-    // to call the function, until the last question
     for (var i = 0; i < answersEl.length; i++) {
         answersEl[i].addEventListener("click", (event) => {
-            event.preventDefault();
-            event.stopPropagation();
             if (id < 4) {
                 id++;
-                quiz()
+                quiz();
             }
         })
     };
-}
 
 // Start Quiz on button click
-startEl.addEventListener("click", (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    startQuiz();
-});
+startEl.addEventListener("click", quiz);
 
 // count is stacking the penalty.. 10 secs.. then 20.. then 30... etc
 // need debug
