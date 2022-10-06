@@ -44,6 +44,9 @@ containerEl[0].style.display = '';
 function hideContainer() {
     containerEl[0].style.display = 'none';
 }
+function showContainer() {
+    containerEl[0].style.display = '';
+}
 
 // add event listener's:
 // Start the timer
@@ -80,6 +83,7 @@ var ans2El = document.getElementById("ans2");
 var ans3El = document.getElementById("ans3");
 var ans4El = document.getElementById("ans4");
 var userAnswer = "";
+
 // set id to 0 so func can run properly
 var id = 0;
 
@@ -188,35 +192,103 @@ function quiz() {
     });
 };
 
-    for (var i = 0; i < answersEl.length; i++) {
-        answersEl[i].addEventListener("click", (event) => {
-            if (id < 4) {
-                id++;
-                quiz();
-            }
-            else {
-                clearInterval(countdown);
-                allDone();
-            }
-        })
-    };
+for (var i = 0; i < answersEl.length; i++) {
+    answersEl[i].addEventListener("click", (event) => {
+        if (id < 4) {
+            id++;
+            quiz();
+        }
+        else {
+            clearInterval(countdown);
+            allDone();
+        }
+    })
+};
 
-    // function to hide questions and show the all done form.
-    function allDone() {
-        hideQuestions();
-        // add text indicating quiz is finished
-        var doneTitle = document.createElement('h1');
-        doneTitle.classList = "title";
-        doneTitle.textContent = "All Done!";
-        finishedEl.append(doneTitle);
-        // add text indicating final score
-        var scoreMessage = document.createElement('p');
-        scoreMessage.textContent = "Your final score is " + count + "!";
-        finishedEl.append(scoreMessage);
+// function to hide questions and show the all done form.
+function allDone() {
+    finishedEl.style.display = '';
+    timerEl.style.display = 'none';
+    hideQuestions();
+    // add text indicating quiz is finished
+    var doneTitle = document.createElement('h1');
+    doneTitle.classList = "title";
+    doneTitle.textContent = "All Done!";
+    finishedEl.append(doneTitle);
+    // add text indicating final score
+    var scoreMessage = document.createElement('p');
+    scoreMessage.textContent = "Your final score is " + count + "!";
+    scoreMessage.classList = "text-left";
+    finishedEl.append(scoreMessage);
+    // Text box with form and submit button
+    var initialsEl = document.createElement('p');
+    initialsEl.textContent = "Enter Initials: ";
+    initialsEl.classList = "text-left";
+    finishedEl.append(initialsEl);
+    var inputBox = document.createElement('input');
+    inputBox.type = "text";
+    inputBox.classList = "text-left";
+    inputBox.id = "input";
+    inputBox.placeholder = "Type In Here!";
+    initialsEl.append(inputBox);
+    var submitBtn = document.createElement('button');
+    submitBtn.textContent = "Submit";
+    submitBtn.id = "submit";
+    initialsEl.append(submitBtn);
 
+    submitBtn.addEventListener("click", highScores);
+}
 
+function hideAffirmMsg() {
+    affirm.style.display = "none";
+}
+function hideFinishedMsg() {
+    finishedEl.style.display = "none";
+}
+function showAffirmMsg(){
+    affirm.style.display = "";
+}
+function showFinishedMsg(){
+    finishedEl.style.display = "";
+}
+function showHighScores(){
+    highScoresPageEl.style.display = "";
+}
+function hideHighScores(){
+    highScoresPageEl.style.display = "none";
+}
 
-    }
+var highScoresPageEl = document.querySelector(".high-scores-page")
+
+// function that displays highscores page
+function highScores() {
+    hideAffirmMsg();
+    hideFinishedMsg();
+    showHighScores();
+
+    // Introduction to High Scores Page
+    var highScoreTitle = document.createElement('h1');
+    highScoreTitle.classList = "title";
+    highScoreTitle.textContent = "Highscores";
+    highScoresPageEl.append(highScoreTitle);
+
+    // create ol that will dynamically pull information from local storage
+    var highScoreList = document.createElement('ol');
+    highScoreList.classList = "players-list";
+    highScoresPageEl.append(highScoreList);
+
+    var userInformation = document.createElement('li');
+    userInformation.classList = "user-info";
+    userInformation.textContent = "PlaceHolder-Text";
+    highScoreList.appendChild(userInformation);
+
+    var backBtn = document.createElement('button');
+    backBtn.classList = "btn";
+    backBtn.textContent = "Go Back";
+    highScoreList.append(backBtn);
+    backBtn.addEventListener("click", hideHighScores);
+    backBtn.addEventListener("click", showContainer);
+}
 
 // Start Quiz on button click
 startEl.addEventListener("click", quiz);

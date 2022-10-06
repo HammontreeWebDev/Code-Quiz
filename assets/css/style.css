@@ -89,3 +89,59 @@ header {
     font-weight: 900;
     color: grey;
 }
+
+/* give submit button similar styling */
+
+#submit {
+    font-size: 100%;
+    background-color: var(--purple);
+    color: white;
+    margin-left: 15px;
+}
+/* similar to container settings */
+.finished {
+    display: flex;
+    flex-flow: column wrap;
+    margin-top: 5%;
+    width: 50%;
+    margin-left: 25%;
+    align-items: flex-start;
+}
+/* similar to container p settings */
+.text-left {
+    font-size: 135%;
+    width: 60%;
+    margin-bottom: 15px;
+}
+
+#input {
+    font-size: 100%;
+    width: 50%;
+}
+
+.high-scores-page {
+    display: flex;
+    flex-flow: column wrap;
+    margin-top: 5%;
+    width: 50%;
+    margin-left: 25%;
+    align-items: flex-start;
+}
+
+.user-info {
+    font-size: 135%;
+    width: 35vw;
+    margin-bottom: 15px;
+    list-style-type: decimal;
+    /* important to position inside for visual appeal */
+    list-style-position: inside;
+    background-color: lightpink;
+    padding: 2%;
+}
+
+/* similar to other buttons. Probably could have made this simpler for myself but the buttons do have small differences */
+.btn {
+    font-size: 120%;
+    background-color: var(--purple);
+    color: white;
+}
