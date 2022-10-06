@@ -29,4 +29,6 @@ THEN I can save my initials and my score
 ```
 ## Deployed Application
 
+Link: https://visag3.github.io/Code-Quiz/
+
 <img width="1728" alt="Screen Shot 2022-10-06 at 5 42 22 PM" src="https://user-images.githubusercontent.com/113649683/194424334-a7aafa82-6629-4922-9195-ce192902b3b1.png">
