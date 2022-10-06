@@ -139,24 +139,16 @@ function quiz() {
     var thirdAnswerValue = questions[id].answer[2].isCorrect;
     var fourthAnswerValue = questions[id].answer[3].isCorrect;
 
-    // affirm message to be displayed for right and wrong answers
-    function correct() {
-        affirm.textContent = "-- Correct! --";
-        count = count;
-    }
-    function incorrect() {
-        affirm.textContent = "-- Incorrect! --";
-        count = (count-10);
-    }
-
     // function to evaluate user input and give feedback:
 
     function evaluate() {
         if (userAnswer == true) {
-            correct();
+            affirm.textContent = "-- Correct! --";
+            count = count;
         }
         else {
-            incorrect();
+            affirm.textContent = "-- Incorrect! --";
+            count = (count - 10);
         }
     }
 
