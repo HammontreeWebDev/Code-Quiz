@@ -1,3 +1,6 @@
+// Variable for finished page once quiz  is over
+var finishedEl = document.querySelector(".finished");
+console.log(finishedEl);
 // target the timer in the html structure and
 // assign it to a variable
 var timerEl = document.querySelector("#timer");
@@ -191,8 +194,29 @@ function quiz() {
                 id++;
                 quiz();
             }
+            else {
+                clearInterval(countdown);
+                allDone();
+            }
         })
     };
+
+    // function to hide questions and show the all done form.
+    function allDone() {
+        hideQuestions();
+        // add text indicating quiz is finished
+        var doneTitle = document.createElement('h1');
+        doneTitle.classList = "title";
+        doneTitle.textContent = "All Done!";
+        finishedEl.append(doneTitle);
+        // add text indicating final score
+        var scoreMessage = document.createElement('p');
+        scoreMessage.textContent = "Your final score is " + count + "!";
+        finishedEl.append(scoreMessage);
+
+
+
+    }
 
 // Start Quiz on button click
 startEl.addEventListener("click", quiz);
